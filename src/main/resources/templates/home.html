@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>MongoDB/Spring Boot tutorial from tests4geeks.com</title>
+		<style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-spacing: 0px;
+			}
+			th, td {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th>NAME</th>
+					<th>STATUS</th>
+					<th>METADATAID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="protected : ${protectedList}">
+					<td th:text="${protected.NAME}"></td>
+					<td th:text="${protected.STATUS}"></td>
+					<td th:text="${protected.METADATAID}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<h2>Search for Protected Area</h2>
+		<form action="/search" method="POST">
+			<input type="text" name="search" id="search" th:value="${search}" />
+			<input type="submit" value="Search" />
+		</form>
+	</body>
+</html>
