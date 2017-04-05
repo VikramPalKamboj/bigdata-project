@@ -1,38 +1,83 @@
-<html>
-	<head>
-		<title>MongoDB/Spring Boot tutorial from tests4geeks.com</title>
+<!DOCTYPE HTML> 
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Protected Area</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
 		<style>
+			body {
+				    background-image: url("img/vikram.jpg");
+				    
+               }
 			table, th, td {
 			   border: 1px solid black;
 			   border-spacing: 0px;
+			   margin-left: 250px;
 			}
 			th, td {
 				padding: 10px;
+				margin-left: 250px;
+			}
+			#vikram-form
+			{
+				margin-left: 250px;
+				margin-bottom:25px;
+			}
+			#search{
+			    
+			    border-radius: 10px;
+			    width: 223px;
+			    height: 37px;
+			}
+			#submit{
+				border-radius: 10px;
+				 width: 100px;
+				 height: 37px;
+			}
+			#search-protected{
+				font-family: sans-serif;
+				 font-style: oblique;
+				 margin-left: 250px;
 			}
 		</style>
 	</head>
 	<body>
+	<h2 id="search-protected">Search for Protected Area</h2>
+		<form id="vikram-form" action="/search" method="POST">
+			<input type="text" name="search" id="search" th:value="${search}" />
+			<input id="submit" type="submit" value="Search" />
+		</form>
+		
 		<table>
 			<thead>
 				<tr>
 					<th>NAME</th>
+					<th>COUNTRY</th>
 					<th>STATUS</th>
-					<th>METADATAID</th>
+					<th>YEAR</th>
+					<th>DESIGNATION</th>
+					<th>GOVERANCE</th>
+					<th>SURFACE</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="protected : ${protectedList}">
 					<td th:text="${protected.NAME}"></td>
-					<td th:text="${protected.STATUS}"></td>
-					<td th:text="${protected.METADATAID}"></td>
+					<td  th:text="${protected.ISO3}"></td>
+					<td  th:text="${protected.STATUS}"></td>
+					<td  th:text="${protected.OWN_TYPE}"></td>
+					<td th:text="${protected.DESIG_TYPE}"></td>
+					<td  th:text="${protected.GOV_TYPE}"></td>
+					<td th:text="${protected.NO_TK_AREA}"></td>	
+					<td id="longi" th:text="${protected.field29}"></td>
+					<td  id="latitude" th:text="${protected.field30}"></td>
 				</tr>
+					
 			</tbody>
 		</table>
 		<br />
-		<h2>Search for Protected Area</h2>
-		<form action="/search" method="POST">
-			<input type="text" name="search" id="search" th:value="${search}" />
-			<input type="submit" value="Search" />
-		</form>
+		<div id="map" style="width:70%;height:600px;margin-left: 250px;"></div>
+		<script type="text/javascript" th:src="@{/js/script.js}" ></script>
+	    <script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKO-de74gkJW_zNBZHTz6-Z6iq5O2_eM4&amp;callback=initMap"></script>
 	</body>
 </html>

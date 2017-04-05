@@ -1,4 +1,4 @@
-package protectedbigdata;
+package net.uresk.tutorials;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
